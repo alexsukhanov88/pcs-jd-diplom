@@ -28,14 +28,13 @@ public class Main {
                  BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
 
                 String word = in.readLine();
-                System.out.println(word);
 
                 GsonBuilder builder = new GsonBuilder();
                 Gson gson = builder.setPrettyPrinting().create();
                 Type listType = new TypeToken<List<PageEntry>>() {}.getType();
 
                 out.println(gson.toJson(engine.search(word), listType));
-                System.out.println(gson.toJson(engine.search(word), listType));
+                //System.out.println(gson.toJson(engine.search(word), listType));
             } catch (IOException e) {
                 e.printStackTrace();
             }
