@@ -19,10 +19,10 @@ public class Main {
         // слушать он должен порт 8989
         // отвечать на запросы /{word} -> возвращённое значение метода search(word) в JSON-формате
 
+        ServerSocket serverSocket = new ServerSocket(8989);
 
         while(true) {
-            try (ServerSocket serverSocket = new ServerSocket(8989);
-
+            try (
                  Socket clientSocket = serverSocket.accept(); // ждем подключения
                  PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                  BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
@@ -34,7 +34,7 @@ public class Main {
                 Type listType = new TypeToken<List<PageEntry>>() {}.getType();
 
                 out.println(gson.toJson(engine.search(word), listType));
-                //System.out.println(gson.toJson(engine.search(word), listType));
+                System.out.println("Произведён поиск по слову " + word);
             } catch (IOException e) {
                 e.printStackTrace();
             }

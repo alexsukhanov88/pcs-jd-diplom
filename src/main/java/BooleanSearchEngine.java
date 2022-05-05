@@ -50,7 +50,7 @@ public class BooleanSearchEngine implements SearchEngine {
     @Override
     public List<PageEntry> search(String word) {
         // тут реализуйте поиск по слову
-        List<PageEntry> result = this.wordMap.get(word);
+        List<PageEntry> result = this.wordMap.get(word.toLowerCase());
         if (result != null) {
                 result.sort(Comparator.reverseOrder());
         }
